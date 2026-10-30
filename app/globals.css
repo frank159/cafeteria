@@ -1,0 +1,30 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  
+  /* Mapeando as fontes do Next para o Tailwind */
+  --font-anton: var(--font-anton);
+  --font-abel: var(--font-abel);
+  --font-bona: var(--font-bona-nova-sc);
+  --font-body: var(--font-averia-sans-libre);
+  --font-hand: var(--font-caveat);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+}
