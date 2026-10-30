@@ -6,6 +6,7 @@ import {
   Caveat,
 } from 'next/font/google';
 import './globals.css';
+import Loading from './component/Loading/Loading';
 
 const anton = Anton({
   weight: '400',
@@ -51,7 +52,10 @@ export default function RootLayout({
       lang="pt-BR"
       className={`${anton.variable} ${abel.variable} ${title.variable} ${body.variable} ${hand.variable}`}
     >
-      <body className="font-body antialiased">{children}</body>
+      <body className="font-body antialiased">
+        <Loading />
+        {children}
+      </body>
     </html>
   );
 }

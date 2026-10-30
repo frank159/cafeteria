@@ -1,5 +1,5 @@
-import { styled, css } from "styled-components";
-import Text from "@/app/component/Text/Text";
+import { motion } from "framer-motion";
+import { styled, css, keyframes } from "styled-components";
 
 /*
   Desktop (> 1200px): frame de 1920px, tudo em % do frame. Título e texto escalam
@@ -8,6 +8,13 @@ import Text from "@/app/component/Text/Text";
 */
 const desktop = "@media (min-width: 1201px)";
 const mobile = "@media (max-width: 1200px)";
+
+/* Flutuação suave dos ícones. Usa a propriedade `translate`, que não conflita
+   com o `transform` que o framer-motion controla na entrada. */
+const float = keyframes`
+  0%, 100% { translate: 0 0; }
+  50% { translate: 0 -8px; }
+`;
 
 export const PresentationPageBContainer = styled.section`
   width: 100%;
@@ -50,7 +57,7 @@ export const Picture = styled.picture`
 /* ───────── Seção 1 ───────── */
 
 /* img1: x812 y123 1014x601 · mobile: vira fundo da seção inteira */
-export const ImgRoom = styled.img`
+export const ImgRoom = styled(motion.img)`
   position: absolute;
   left: 42.29%;
   top: 14.24%;
@@ -70,7 +77,7 @@ export const ImgRoom = styled.img`
 `;
 
 /* Ícone de café com leite no canto da foto */
-export const LatteA = styled.img`
+export const LatteA = styled(motion.img)`
   position: absolute;
   left: 88.54%;
   top: 7.52%;
@@ -79,6 +86,10 @@ export const LatteA = styled.img`
   z-index: 3;
   pointer-events: none;
   user-select: none;
+
+  @media (prefers-reduced-motion: no-preference) {
+    animation: ${float} 4s ease-in-out infinite;
+  }
 
   ${mobile} {
     display: none;
@@ -94,7 +105,7 @@ const stainBase = css`
 `;
 
 /* Mancha da seção 1: x437 y424 220px */
-export const StainA = styled.img`
+export const StainA = styled(motion.img)`
   ${stainBase}
   left: 22.76%;
   top: 49.07%;
@@ -130,7 +141,7 @@ export const TextBlock = styled.div<{ $left: string; $top: string; $width: strin
 `;
 
 /* Título + texto. $text = tamanho do texto no frame de 1920px (em cqw) */
-export const Copy = styled.div<{ $text: string; $end?: boolean }>`
+export const Copy = styled(motion.div)<{ $text: string; $end?: boolean }>`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -160,15 +171,15 @@ export const Copy = styled.div<{ $text: string; $end?: boolean }>`
     }
 
     ${(p) =>
-    p.$end &&
-    css`
+      p.$end &&
+      css`
         align-items: flex-end;
         text-align: right;
       `}
   }
 `;
 
-export const ButtonRow = styled.div`
+export const ButtonRow = styled(motion.div)`
   display: flex;
   align-items: center;
   gap: 20px;
@@ -191,7 +202,7 @@ export const HideOnMobile = styled.div`
   }
 `;
 
-export const ButtonSlot = styled.div<{ $gap?: string }>`
+export const ButtonSlot = styled(motion.div)<{ $gap?: string }>`
   display: flex;
   margin-top: ${(p) => p.$gap ?? "0"};
 
@@ -205,7 +216,7 @@ export const ButtonSlot = styled.div<{ $gap?: string }>`
 /* ───────── Seção 2 ───────── */
 
 /* Estrela: x390 y608 180px */
-export const Star = styled.img`
+export const Star = styled(motion.img)`
   position: absolute;
   left: 20.31%;
   top: 69.41%;
@@ -228,7 +239,7 @@ export const Star = styled.img`
 `;
 
 /* img2 (bolo com flores): x296 y138 618x370 – só desktop, fica por cima da img3 */
-export const ImgFlower = styled.img`
+export const ImgFlower = styled(motion.img)`
   position: absolute;
   left: 15.42%;
   top: 15.75%;
@@ -243,7 +254,7 @@ export const ImgFlower = styled.img`
 `;
 
 /* img3 (três bolos): x717 y432 763x406 · mobile: img2Mobile 285x120 */
-export const ImgCakes = styled.img`
+export const ImgCakes = styled(motion.img)`
   position: absolute;
   left: 37.34%;
   top: 49.32%;
@@ -266,35 +277,33 @@ export const ImgCakes = styled.img`
    Mobile: texto em cima; imagem embaixo com botão (esq.) e estrela sobrepostos */
 export const EventGroup = styled.div`
   display: contents;
-  
+
   ${mobile} {
     display: grid;
     grid-template-columns: minmax(0, 1fr);
     grid-template-areas:
-    "copy"
-    "media";
+      "copy"
+      "media";
     row-gap: 1.3rem;
     align-items: start;
-    
+
     ${ButtonSlot} {
       grid-area: media;
       justify-self: start;
       align-self: start;
       margin-top: 42px;
+
       @media (max-width: 468px) {
         margin-top: 12px;
-    
-    }
+      }
     }
   }
-
-
 `;
 
 /* ───────── Seção 3 ───────── */
 
 /* Mancha da seção 3: x935 y258 203px */
-export const StainC = styled.img`
+export const StainC = styled(motion.img)`
   ${stainBase}
   left: 48.7%;
   top: 34%;
@@ -310,7 +319,7 @@ export const StainC = styled.img`
 `;
 
 /* "Te esperamos ansiosos" com o ícone em cima (ícone só no desktop) */
-export const Tagline = styled.div`
+export const Tagline = styled(motion.div)`
   position: absolute;
   left: 80.9%;
   top: 27.7%;
@@ -329,7 +338,7 @@ export const Tagline = styled.div`
   }
 `;
 
-export const TaglineIcon = styled.img`
+export const TaglineIcon = styled(motion.img)`
   width: max(48px, 2.24cqw);
   height: auto;
   rotate: -5deg;
@@ -340,7 +349,7 @@ export const TaglineIcon = styled.img`
   }
 `;
 
-export const TaglineText = styled.span`
+export const TaglineText = styled(motion.span)`
   font-family: var(--font-caveat), cursive;
   font-size: max(18px, 1.56cqw);
   line-height: 1.27;
@@ -358,6 +367,7 @@ export const TaglineText = styled.span`
 export const Address = styled.div`
   display: flex;
   flex-direction: row;
+
   && {
     margin-top: -9px;
   }
@@ -369,7 +379,7 @@ export const Address = styled.div`
   }
 `;
 
-export const Footer = styled.footer`
+export const Footer = styled(motion.footer)`
   width: 100%;
   box-sizing: border-box;
   padding: 1.4rem 1rem;

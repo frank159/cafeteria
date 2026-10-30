@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import { styled } from "styled-components";
 
 /*
@@ -44,7 +45,7 @@ export const Stage = styled.div`
 `;
 
 /* Estrela no canto superior direito, cortada pela borda de cima */
-export const Star = styled.img`
+export const Star = styled(motion.img)`
   position: absolute;
   left: 86.9%;
   top: -1.4%;
@@ -60,7 +61,7 @@ export const Star = styled.img`
 `;
 
 /* Botão: no desktop mantém o espaço que o pb-4 dava; no mobile o grupo posiciona */
-export const ButtonSlot = styled.div<{ $spaced?: boolean }>`
+export const ButtonSlot = styled(motion.div) <{ $spaced?: boolean }>`
   display: flex;
   margin-top: ${(p) => (p.$spaced ? "16px" : "0")};
 
@@ -76,7 +77,7 @@ export const ButtonSlot = styled.div<{ $spaced?: boolean }>`
 `;
 
 /* Título + texto */
-export const Copy = styled.div`
+export const Copy = styled(motion.div)`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -118,10 +119,14 @@ export const TextBlock = styled.div<{ $left: string; $top: string; $width: strin
 `;
 
 /* Seção 1: texto em cima; imagem embaixo com o botão sobreposto à esquerda */
+/* Seção 1: Ajustado para não usar display: contents que quebra o absolute */
 export const CakesGroup = styled.div`
-  display: contents;
+  position: absolute;
+  inset: 0;
+  pointer-events: none; /* Deixa cliques passarem se necessário, ou remova se houver interatividade */
 
   @media (max-width: 1200px) {
+    position: static;
     display: grid;
     grid-template-columns: minmax(0, 1fr);
     grid-template-areas:
@@ -129,6 +134,7 @@ export const CakesGroup = styled.div`
       "media";
     row-gap: 1.25rem;
     align-items: start;
+    pointer-events: auto;
 
     ${ButtonSlot} {
       grid-area: media;
@@ -137,11 +143,14 @@ export const CakesGroup = styled.div`
   }
 `;
 
-/* Seção 2: texto em cima; imagem embaixo com o botão sobreposto à direita */
+/* Seção 2: Ajustado da mesma forma */
 export const CoffeeGroup = styled.div`
-  display: contents;
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
 
   @media (max-width: 1200px) {
+    position: static;
     display: grid;
     grid-template-columns: minmax(0, 1fr);
     grid-template-areas:
@@ -149,6 +158,7 @@ export const CoffeeGroup = styled.div`
       "media";
     row-gap: 1.2rem;
     align-items: start;
+    pointer-events: auto;
 
     ${ButtonSlot} {
       grid-area: media;
@@ -160,8 +170,8 @@ export const CoffeeGroup = styled.div`
 `;
 
 /* img1: x100 y53 535x638 – fica por cima da img2 */
-export const ImgCakes = styled.img`
-  position: absolute;
+export const ImgCakes = styled(motion.img)`
+position: absolute;
   left: 5.208%;
   top: 5.86%;
   width: 27.86%;
@@ -184,7 +194,7 @@ export const ImgCakes = styled.img`
 `;
 
 /* img2: x480 y355 591x395 – parte da esquerda fica atrás da img1 */
-export const ImgCoffee = styled.img`
+export const ImgCoffee = styled(motion.img)`
   position: absolute;
   left: 25%;
   top: 39.27%;
@@ -235,7 +245,7 @@ export const OutlineButton = styled.a`
 `;
 
 /* Anel de café: x1215 y535 ~182px */
-export const CoffeeRing = styled.img`
+export const CoffeeRing = styled(motion.img)`
   position: absolute;
   left: 62.28%;
   top: 52%;

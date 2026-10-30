@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import { styled, css } from "styled-components";
 
 export const HomeCardContainer = styled.section`
@@ -22,7 +23,7 @@ export const HomeCardContainer = styled.section`
   }
 `;
 
-export const HomeCardContent = styled.div`
+export const HomeCardContent = styled(motion.div)`
   position: relative;
   z-index: 2;
   display: flex;
@@ -56,7 +57,7 @@ export const HomeCardTitleWrapper = styled.div`
   }
 `;
 
-export const CoffeeRing = styled.img`
+export const CoffeeRing = styled(motion.img)`
   position: absolute;
   left: 4em;
   top: 0.6em;
@@ -72,8 +73,23 @@ export const CoffeeRing = styled.img`
 
 `;
 
+export const TitleLine = styled.span`
+  display: block;
+  overflow: hidden;
+  /* folga embaixo para não cortar o "q" de "quente" */
+  padding-bottom: 0.12em;
+  margin-bottom: -0.12em;
+`;
+
+export const TitleLineInner = styled(motion.span)`
+  display: block;
+`;
+
+/* NOVO: wrapper de cada botão (o ActionButton mantém o hover em CSS) */
+export const ButtonItem = styled(motion.div)``;
+
 /* Wrapper do Text: controla só espaçamento e largura */
-export const HomeCardDescription = styled.div`
+export const HomeCardDescription = styled(motion.div)`
   margin: 0 0 2.4rem;
   max-width: 340px;
 
@@ -128,7 +144,7 @@ export const ActionButton = styled.button<{ $hideOnMobile?: boolean }>`
     `}
 `;
 
-export const HomeCardTagline = styled.span`
+export const HomeCardTagline = styled(motion.span)`
   position: absolute;
   top: 29%;
   left: 79.5%;
