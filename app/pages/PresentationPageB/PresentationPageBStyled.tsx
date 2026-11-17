@@ -2,11 +2,6 @@ import { motion } from "framer-motion";
 import { styled, css } from "styled-components";
 import { floatLoop } from "../animations";
 
-/*
-  Desktop (> 1200px): frame de 1920px, tudo em % do frame. Título e texto escalam
-  com o frame (cqw), então a composição não quebra em larguras intermediárias.
-  Até 1200px: coluna única seguindo a referência mobile.
-*/
 const desktop = "@media (min-width: 1201px)";
 const mobile = "@media (max-width: 1200px)";
 
@@ -16,7 +11,6 @@ export const PresentationPageBContainer = styled.section`
   overflow: hidden;
 `;
 
-/* No mobile é o Section (e não o Stage) que ancora imagem de fundo e manchas */
 export const Section = styled.section`
   position: relative;
   width: 100%;
@@ -46,7 +40,6 @@ export const Picture = styled.picture`
 
 /* ───────── Seção 1 ───────── */
 
-/* img1: x812 y123 1014x601 · mobile: vira fundo da seção inteira */
 export const ImgRoom = styled(motion.img)`
   position: absolute;
   left: 42.29%;
@@ -66,7 +59,6 @@ export const ImgRoom = styled(motion.img)`
   }
 `;
 
-/* Ícone de café com leite no canto da foto */
 export const LatteA = styled(motion.img)`
   position: absolute;
   left: 88.54%;
@@ -90,7 +82,6 @@ const stainBase = css`
   z-index: 1;
 `;
 
-/* Mancha da seção 1: x437 y424 220px */
 export const StainA = styled(motion.img)`
   ${stainBase}
   left: 22.76%;
@@ -101,7 +92,7 @@ export const StainA = styled(motion.img)`
     left: auto;
     top: auto;
     right: 6%;
-    bottom: -40px; /* vaza um pouco para fora da seção, como na referência */
+    bottom: -40px;
     width: clamp(90px, 26%, 140px);
     z-index: 2;
   }
@@ -120,13 +111,11 @@ export const TextBlock = styled.div<{ $left: string; $top: string; $width: strin
   gap: 9px;
   z-index: 4;
 
-  /* mobile: Copy e botões viram itens do flex/grid da seção */
   ${mobile} {
     display: contents;
   }
 `;
 
-/* Título + texto. $text = tamanho do texto no frame de 1920px (em cqw) */
 export const Copy = styled(motion.div) <{ $text: string; $end?: boolean }>`
   display: flex;
   flex-direction: column;
@@ -139,10 +128,6 @@ export const Copy = styled(motion.div) <{ $text: string; $end?: boolean }>`
       line-height: 1.08;
       white-space: nowrap;
     }
-
-    /* > :not(h2) {
-      font-size: max(12px, ${(p) => p.$text});
-    } */
   }
 
   ${mobile} {
@@ -179,7 +164,6 @@ export const ButtonRow = styled(motion.div)`
   }
 `;
 
-/* "Fazer reserva" some no mobile */
 export const HideOnMobile = styled.div`
   display: contents;
 
@@ -201,7 +185,6 @@ export const ButtonSlot = styled(motion.div) <{ $gap?: string }>`
 
 /* ───────── Seção 2 ───────── */
 
-/* Estrela: x390 y608 180px */
 export const Star = styled(motion.img)`
   position: absolute;
   left: 20.31%;
@@ -212,7 +195,6 @@ export const Star = styled(motion.img)`
   pointer-events: none;
   user-select: none;
 
-  /* mobile: no canto inferior esquerdo da foto, por cima dela */
   ${mobile} {
     position: static;
     grid-area: media;
@@ -224,7 +206,6 @@ export const Star = styled(motion.img)`
   }
 `;
 
-/* img2 (bolo com flores): x296 y138 618x370 – só desktop, fica por cima da img3 */
 export const ImgFlower = styled(motion.img)`
   position: absolute;
   left: 15.42%;
@@ -239,7 +220,6 @@ export const ImgFlower = styled(motion.img)`
   }
 `;
 
-/* img3 (três bolos): x717 y432 763x406 · mobile: img2Mobile 285x120 */
 export const ImgCakes = styled(motion.img)`
   position: absolute;
   left: 37.34%;
@@ -259,8 +239,6 @@ export const ImgCakes = styled(motion.img)`
   }
 `;
 
-/* Desktop: sem caixa própria (posições absolutas no Stage).
-   Mobile: texto em cima; imagem embaixo com botão (esq.) e estrela sobrepostos */
 export const EventGroup = styled.div`
   display: contents;
 
@@ -288,7 +266,6 @@ export const EventGroup = styled.div`
 
 /* ───────── Seção 3 ───────── */
 
-/* Mancha da seção 3: x935 y258 203px */
 export const StainC = styled(motion.img)`
   ${stainBase}
   left: 38.7%;
@@ -304,7 +281,6 @@ export const StainC = styled(motion.img)`
   }
 `;
 
-/* "Te esperamos ansiosos" com o ícone em cima (ícone só no desktop) */
 export const Tagline = styled(motion.div)`
   position: absolute;
   left: 80.9%;

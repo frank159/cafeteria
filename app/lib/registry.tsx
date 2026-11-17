@@ -17,7 +17,6 @@ export default function StyledComponentsRegistry({
     return <>{styles}</>;
   });
 
-  // No cliente não precisa do ServerStyleSheet
   if (typeof window !== "undefined") return <>{children}</>;
 
   return (

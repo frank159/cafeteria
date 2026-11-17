@@ -30,12 +30,11 @@ export default function Header() {
     useEffect(() => {
         const handleScroll = () => setIsScrolled(window.scrollY > 0);
 
-        handleScroll(); // cobre o caso de a página carregar já rolada
+        handleScroll();
         window.addEventListener("scroll", handleScroll, { passive: true });
         return () => window.removeEventListener("scroll", handleScroll);
     }, []);
 
-    // Fecha com ESC
     useEffect(() => {
         if (!open) return;
         const onKey = (e: KeyboardEvent) => e.key === "Escape" && setOpen(false);
@@ -43,7 +42,6 @@ export default function Header() {
         return () => window.removeEventListener("keydown", onKey);
     }, [open]);
 
-    // Trava o scroll da página enquanto o menu está aberto
     useEffect(() => {
         document.body.style.overflow = open ? "hidden" : "";
         return () => {
@@ -51,7 +49,6 @@ export default function Header() {
         };
     }, [open]);
 
-    // Fecha ao passar para o breakpoint desktop
     useEffect(() => {
         const mq = window.matchMedia("(min-width: 1024px)");
         const onChange = (e: MediaQueryListEvent) => e.matches && setOpen(false);
@@ -64,7 +61,6 @@ export default function Header() {
         scrollToSection(id);
     };
 
-    // No mobile: fecha o menu e rola logo depois, já com o scroll liberado
     const scrollToAndClose = (id: string) => (event: MouseEvent<HTMLAnchorElement>) => {
         event.preventDefault();
         close();
@@ -93,7 +89,6 @@ export default function Header() {
                 />
             </a>
 
-            {/* Navegação desktop */}
             <S.ButtonSection>
                 {links.map(({ label, id }) => (
                     <S.ButtonHeaderStyled
@@ -107,7 +102,6 @@ export default function Header() {
                 ))}
             </S.ButtonSection>
 
-            {/* Botão sanduíche (só mobile/tablet) */}
             <S.BurgerButton
                 type="button"
                 onClick={() => setOpen((v) => !v)}
@@ -122,7 +116,6 @@ export default function Header() {
                 </S.BurgerIcon>
             </S.BurgerButton>
 
-            {/* Menu mobile */}
             <S.Backdrop $open={open} aria-hidden="true" onClick={close} />
 
             <S.MobileMenu id="mobile-menu" $open={open} aria-label="Menu principal">

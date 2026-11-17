@@ -16,7 +16,6 @@ export const TextCordTitle = styled.h1<{ align?: string }>`
     margin-bottom: 1rem;
     text-align: ${(props) => props.align || "left"};
     
-    /* Se o alinhamento for à direita, empurra o bloco para a direita */
     ${(props) => (props.align === "right" || props.align === "flex-end") && "margin-left: auto;"}
 
     @media (max-width: 767px) {
@@ -30,7 +29,6 @@ export const TextCordDescription = styled.p<{ width?: string; align?: string }>`
     line-height: 1.5;
     text-align: ${(props) => props.align || "left"};
     
-    /* Se o alinhamento for à direita, empurra o bloco para a direita */
     ${(props) => (props.align === "right" || props.align === "flex-end") && "margin-left: auto;"}
     
     @media (max-width: 767px) {

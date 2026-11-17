@@ -5,9 +5,6 @@ const EASE_OUT = "cubic-bezier(0.22, 1, 0.36, 1)";
 const EASE_IN_OUT = "cubic-bezier(0.76, 0, 0.24, 1)";
 const MENU_BG = "#3d1c14"; // versão opaca do fundo do header
 
-/* Tempo que os itens levam para sair (35ms de cascata + 260ms de duração).
-   O painel e o fundo só começam a recolher depois disso.
-   --count (quantidade de links) é definido no <header>. */
 const EXIT_WAIT = "calc((var(--count) - 1) * 35ms + 260ms)";
 
 export const HeaderStyled = styled.header<{ $isScrolled: boolean }>`
@@ -48,7 +45,6 @@ export const HeaderStyled = styled.header<{ $isScrolled: boolean }>`
     }
 `;
 
-/* Links do desktop: somem no mobile */
 export const ButtonSection = styled.div`
     display: none;
     gap: 3rem;
@@ -213,7 +209,6 @@ export const MobileList = styled.ul`
     list-style: none;
 `;
 
-/* --i = posição do item (definido inline no TSX) */
 export const MobileItem = styled.li<{ $open: boolean }>`
     border-bottom: 1px solid rgba(255, 255, 255, 0.15);
 
@@ -227,7 +222,6 @@ export const MobileItem = styled.li<{ $open: boolean }>`
         $open
             ? `opacity 400ms ${EASE_OUT}, transform 400ms ${EASE_OUT}`
             : "opacity 260ms ease, transform 260ms ease"};
-    /* abrir: cascata de cima para baixo | fechar: de baixo para cima */
     transition-delay: ${({ $open }) =>
         $open
             ? "calc(120ms + var(--i) * 50ms)"
