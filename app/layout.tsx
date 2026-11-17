@@ -4,9 +4,10 @@ import {
   Bona_Nova_SC,
   Averia_Sans_Libre,
   Caveat,
+  Asap_Condensed
 } from 'next/font/google';
 import './globals.css';
-import Loading from './component/Loading/Loading';
+import StyledComponentsRegistry from './lib/registry';
 
 const anton = Anton({
   weight: '400',
@@ -20,6 +21,14 @@ const abel = Abel({
   subsets: ['latin'],
   variable: '--font-abel',
   display: 'swap',
+});
+
+
+const asapCondensed = Asap_Condensed({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-asap-condensed",
+  display: 'swap', // <-- Adicionado
 });
 
 const title = Bona_Nova_SC({
@@ -50,11 +59,10 @@ export default function RootLayout({
   return (
     <html
       lang="pt-BR"
-      className={`${anton.variable} ${abel.variable} ${title.variable} ${body.variable} ${hand.variable}`}
+      className={`${anton.variable} ${abel.variable} ${title.variable} ${body.variable} ${hand.variable} ${asapCondensed.variable}`}
     >
       <body className="font-body antialiased">
-        <Loading />
-        {children}
+        <StyledComponentsRegistry>{children}</StyledComponentsRegistry>
       </body>
     </html>
   );

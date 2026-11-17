@@ -4,16 +4,15 @@ import { MotionConfig } from "framer-motion";
 import * as S from "./HomeCardStyled";
 import Title from "@/app/component/Title/Title";
 import Text from "@/app/component/Text/Text";
-import { fadeUp, lineUp, ringIn, stagger, taglineWipe } from "@/app/pages/animations";
+import { fadeUp, HERO, heroStagger, lineUp, MOTION_CONFIG, onLoad, ringIn, taglineWipe } from "@/app/pages/animations";
 
-const content = stagger(0.15, 0.1);
 const TITLE_LINES = ["Conversa boa,", "Sabor doce,", "Café quente"];
 
 export default function HomeCard() {
   return (
-    <MotionConfig reducedMotion="user">
-      <S.HomeCardContainer>
-        <S.HomeCardContent variants={content} initial="hidden" animate="visible">
+    <MotionConfig {...MOTION_CONFIG}>
+      <S.HomeCardContainer id="home">
+        <S.HomeCardContent variants={heroStagger} {...onLoad()}>
           <S.HomeCardTitleWrapper>
             <Title>
               {TITLE_LINES.map((line) => (
@@ -49,12 +48,7 @@ export default function HomeCard() {
           </S.ButtonContainer>
         </S.HomeCardContent>
 
-        <S.HomeCardTagline
-          variants={taglineWipe}
-          initial="hidden"
-          animate="visible"
-          custom={1.1}
-        >
+        <S.HomeCardTagline variants={taglineWipe} {...onLoad(HERO.tagline)}>
           Seu momento de descanso
         </S.HomeCardTagline>
       </S.HomeCardContainer>

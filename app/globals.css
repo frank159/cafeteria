@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #0a0a0a; /* Já deixe o fundo escuro padrão aqui */
+  --foreground: #ededed;
 }
 
 @theme inline {
@@ -15,16 +15,14 @@
   --font-bona: var(--font-bona-nova-sc);
   --font-body: var(--font-averia-sans-libre);
   --font-hand: var(--font-caveat);
+  --font-asap: var(--font-asap-condensed); /* Adicionado aqui */
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
-body {
-  background: var(--background);
+/* Evita o flash de conteúdo sem estilo e garante que a página comece escura */
+html, body {
+  background-color: var(--background);
   color: var(--foreground);
+  margin: 0;
+  padding:0;
+  overflow-x: hidden;
 }

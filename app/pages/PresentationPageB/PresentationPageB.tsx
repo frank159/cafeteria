@@ -10,35 +10,35 @@ import {
   clipDown,
   clipLeft,
   clipUp,
+  DELAY,
   fadeIn,
   fadeUp,
   floatIn,
   inView,
+  inViewIn,
+  MOTION_CONFIG,
   popStar,
   ringIn,
-  stagger,
+  taglineStagger,
   taglineWipe,
 } from "@/app/pages/animations";
 
 const IMG = "/NewImgs/PresentationPageB";
 
-/* Definido fora do componente para não recriar o objeto a cada render */
-const taglineStagger = stagger(0.2, 0.25);
-
 export default function PresentationPageB() {
   const year = new Date().getFullYear();
 
   return (
-    <MotionConfig reducedMotion="user">
+    <MotionConfig {...MOTION_CONFIG}>
       <S.PresentationPageBContainer>
         {/* ───────── Seção 1: Seu momento de pausa ───────── */}
-        <S.Section>
+        <S.Section id="espacos">
           <S.Stage $ratio="1920 / 864" $padding="4.5rem 1rem 1.75rem">
             <S.Picture>
               <source media="(max-width: 1200px)" srcSet={`${IMG}/img1Mobile.png`} />
               <S.ImgRoom
                 variants={clipLeft}
-                {...inView(0)}
+                {...inViewIn("room", DELAY.base)}
                 src={`${IMG}/img1.png`}
                 alt="Salão da cafeteria com mesas e cadeiras de madeira"
               />
@@ -46,21 +46,21 @@ export default function PresentationPageB() {
 
             <S.LatteA
               variants={floatIn}
-              {...inView(0.7)}
+              {...inViewIn("room", DELAY.accent)}
               src="/NewImgs/CoffeMilk.svg"
               alt=""
               aria-hidden="true"
             />
             <S.StainA
               variants={ringIn}
-              {...inView(0.3)}
+              {...inViewIn("room", DELAY.image)}
               src="/NewImgs/VetorMarcaCaf%C3%A9B.png"
               alt=""
               aria-hidden="true"
             />
 
             <S.TextBlock $left="5.21%" $top="24.6%" $width="25.5%">
-              <S.Copy variants={fadeUp} {...inView(0.2)} $text="0.73cqw">
+              <S.Copy variants={fadeUp} {...inViewIn("room", DELAY.copy)} $text="0.73cqw">
                 <Title as="h2">
                   Seu momento
                   <br />
@@ -73,7 +73,7 @@ export default function PresentationPageB() {
                 </Text>
               </S.Copy>
 
-              <S.ButtonRow variants={fadeUp} {...inView(0.4)}>
+              <S.ButtonRow variants={fadeUp} {...inViewIn("room", DELAY.button)}>
                 <Button text="Entrar em contato" />
                 <S.HideOnMobile>
                   <Button text="Fazer reserva" />
@@ -84,13 +84,13 @@ export default function PresentationPageB() {
         </S.Section>
 
         {/* ───────── Seção 2: Para seu evento ───────── */}
-        <S.Section>
+        <S.Section id="eventos">
           <S.Stage $ratio="1920 / 876" $padding="7rem 1.9rem 2.5rem 1.4rem">
             <S.EventGroup>
               {/* só desktop */}
               <S.ImgFlower
                 variants={clipDown}
-                {...inView(0.15)}
+                {...inViewIn("event", DELAY.image)}
                 src={`${IMG}/img2.png`}
                 alt="Bolo decorado com flores"
                 loading="lazy"
@@ -101,7 +101,7 @@ export default function PresentationPageB() {
                 <source media="(max-width: 1200px)" srcSet={`${IMG}/img2Mobile.png`} />
                 <S.ImgCakes
                   variants={clipUp}
-                  {...inView(0.3)}
+                  {...inViewIn("eventB", DELAY.image)}
                   src={`${IMG}/img3.png`}
                   alt="Mesa de bolos decorados com flores"
                 />
@@ -109,14 +109,14 @@ export default function PresentationPageB() {
 
               <S.Star
                 variants={popStar}
-                {...inView(0.8)}
+                {...inViewIn("eventB", DELAY.accent)}
                 src="/NewImgs/PresentationPage/Star.png"
                 alt=""
                 aria-hidden="true"
               />
 
               <S.TextBlock $left="48.96%" $top="16%" $width="37.5%">
-                <S.Copy variants={fadeUp} {...inView(0.2)} $text="1.15cqw" $end>
+                <S.Copy variants={fadeUp} {...inViewIn("event", DELAY.copy)} $text="1.15cqw" $end>
                   <Title as="h2">Para seu evento</Title>
                   <Text>
                     Leve a experiência da nossa confeitaria para a sua comemoração.
@@ -125,7 +125,7 @@ export default function PresentationPageB() {
                     sob medida para o seu evento.
                   </Text>
                 </S.Copy>
-                <S.ButtonSlot variants={fadeUp} {...inView(0.4)} $gap="1.4cqw">
+                <S.ButtonSlot variants={fadeUp} {...inViewIn("event", DELAY.button)} $gap="1.4cqw">
                   <Button text="Entrar em contato" />
                 </S.ButtonSlot>
               </S.TextBlock>
@@ -134,18 +134,18 @@ export default function PresentationPageB() {
         </S.Section>
 
         {/* ───────── Seção 3: Contato ───────── */}
-        <S.Section>
+        <S.Section id="contato">
           <S.Stage $ratio="1920 / 759" $padding="2rem 1.2rem 3rem">
             <S.StainC
               variants={ringIn}
-              {...inView(0.2)}
+              {...inViewIn("contact", DELAY.image)}
               src="/NewImgs/VetorMarcaCaf%C3%A9B.png"
               alt=""
               aria-hidden="true"
             />
 
             {/* o pai dispara o observer; ícone e texto entram em sequência */}
-            <S.Tagline variants={taglineStagger} {...inView()}>
+            <S.Tagline variants={taglineStagger} {...inViewIn("contact", DELAY.base)}>
               <S.TaglineIcon
                 variants={floatIn}
                 src="/NewImgs/CoffeMilk.svg"
@@ -156,7 +156,7 @@ export default function PresentationPageB() {
             </S.Tagline>
 
             <S.TextBlock $left="5.57%" $top="21.7%" $width="55%">
-              <S.Copy variants={fadeUp} {...inView(0.1)} $text="1.04cqw">
+              <S.Copy variants={fadeUp} {...inViewIn("contact", DELAY.copy)} $text="1.04cqw">
                 <Title as="h2">Ficou com alguma dúvida?</Title>
                 <p className="font-abel">
                   Entre em contato conosco para encomendar seu bolo, reservar uma mesa ou tirar
@@ -174,14 +174,15 @@ export default function PresentationPageB() {
                   Rua dos Cafezais, 100 — Bairro Alto, SP
                 </S.Address>
               </S.Copy>
-              <S.ButtonSlot variants={fadeUp} {...inView(0.3)} $gap="1.6cqw">
+              <S.ButtonSlot variants={fadeUp} {...inViewIn("contact", DELAY.button)} $gap="1.6cqw">
                 <Button text="Entrar em contato" />
               </S.ButtonSlot>
             </S.TextBlock>
           </S.Stage>
         </S.Section>
 
-        <S.Footer variants={fadeIn} {...inView(0.1)}>
+        {/* No fim da página: offset "0%", senão nunca sai da faixa ignorada */}
+        <S.Footer variants={fadeIn} {...inView(DELAY.base, "0%")}>
           © {year} Cafeteria. Todos os direitos reservados.
         </S.Footer>
       </S.PresentationPageBContainer>

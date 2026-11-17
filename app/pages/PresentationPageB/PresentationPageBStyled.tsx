@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
-import { styled, css, keyframes } from "styled-components";
+import { styled, css } from "styled-components";
+import { floatLoop } from "../animations";
 
 /*
   Desktop (> 1200px): frame de 1920px, tudo em % do frame. Título e texto escalam
@@ -8,13 +9,6 @@ import { styled, css, keyframes } from "styled-components";
 */
 const desktop = "@media (min-width: 1201px)";
 const mobile = "@media (max-width: 1200px)";
-
-/* Flutuação suave dos ícones. Usa a propriedade `translate`, que não conflita
-   com o `transform` que o framer-motion controla na entrada. */
-const float = keyframes`
-  0%, 100% { translate: 0 0; }
-  50% { translate: 0 -8px; }
-`;
 
 export const PresentationPageBContainer = styled.section`
   width: 100%;
@@ -34,10 +28,6 @@ export const Stage = styled.div<{ $ratio: string; $padding: string }>`
   max-width: 1920px;
   margin: 0 auto;
   aspect-ratio: ${(p) => p.$ratio};
-
-  ${desktop} {
-    container-type: inline-size;
-  }
 
   ${mobile} {
     position: static;
@@ -87,13 +77,9 @@ export const LatteA = styled(motion.img)`
   pointer-events: none;
   user-select: none;
 
-  @media (prefers-reduced-motion: no-preference) {
-    animation: ${float} 4s ease-in-out infinite;
-  }
+  ${floatLoop}
+  ${mobile} { display: none; }
 
-  ${mobile} {
-    display: none;
-  }
 `;
 
 const stainBase = css`
@@ -141,7 +127,7 @@ export const TextBlock = styled.div<{ $left: string; $top: string; $width: strin
 `;
 
 /* Título + texto. $text = tamanho do texto no frame de 1920px (em cqw) */
-export const Copy = styled(motion.div)<{ $text: string; $end?: boolean }>`
+export const Copy = styled(motion.div) <{ $text: string; $end?: boolean }>`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -171,8 +157,8 @@ export const Copy = styled(motion.div)<{ $text: string; $end?: boolean }>`
     }
 
     ${(p) =>
-      p.$end &&
-      css`
+    p.$end &&
+    css`
         align-items: flex-end;
         text-align: right;
       `}
@@ -202,7 +188,7 @@ export const HideOnMobile = styled.div`
   }
 `;
 
-export const ButtonSlot = styled(motion.div)<{ $gap?: string }>`
+export const ButtonSlot = styled(motion.div) <{ $gap?: string }>`
   display: flex;
   margin-top: ${(p) => p.$gap ?? "0"};
 
@@ -305,7 +291,7 @@ export const EventGroup = styled.div`
 /* Mancha da seção 3: x935 y258 203px */
 export const StainC = styled(motion.img)`
   ${stainBase}
-  left: 48.7%;
+  left: 38.7%;
   top: 34%;
   width: 17%;
 

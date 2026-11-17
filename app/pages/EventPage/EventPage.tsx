@@ -1,28 +1,10 @@
 "use client";
 
-import { useState, useEffect } from "react";
 import * as S from "./EventPageStyled";
 import TextCord from "@/app/component/TextCord/TextCord";
 import Button from "@/app/component/Button/Button";
 
 export default function EventPage() {
-    const [isMobile, setIsMobile] = useState(false);
-
-    useEffect(() => {
-        // Função para checar se a tela é mobile (ex: menor que 767)
-        const handleResize = () => {
-            setIsMobile(window.innerWidth <= 767);
-        };
-
-        // Executa ao carregar a página
-        handleResize();
-
-        // Ouve o evento de redimensionamento da tela
-        window.addEventListener("resize", handleResize);
-
-        // Limpa o evento ao desmontar o componente
-        return () => window.removeEventListener("resize", handleResize);
-    }, []);
 
     return (
         <S.EventPageContainer>
