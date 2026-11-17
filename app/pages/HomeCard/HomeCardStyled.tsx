@@ -7,7 +7,7 @@ export const HomeCardContainer = styled.section`
   flex-direction: column;
   width: 100%;
   min-height: 100vh;
-  min-height: 100svh; 
+  min-height: 100svh;
   box-sizing: border-box;
   overflow: hidden;
 
@@ -67,7 +67,7 @@ export const CoffeeRing = styled(motion.img)`
   z-index: -1;
 
   @media (max-width: 768px) {
-    display: none; 
+    display: none;
   }
 
 `;
@@ -107,7 +107,7 @@ export const ButtonContainer = styled.div`
   width: 100%;
 `;
 
-export const ActionButton = styled.button<{ $hideOnMobile?: boolean }>`
+export const ActionButton = styled.a<{ $hideOnMobile?: boolean }>`
   padding: 0.35rem 0.7rem;
   border: none;
   border-radius: 2px;

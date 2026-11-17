@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, type CSSProperties, type MouseEvent } from "react";
+import { useEffect, useRef, useState, type CSSProperties, type MouseEvent } from "react";
 import * as S from "./HeaderStyled";
 import Image from "next/image";
 
@@ -11,6 +11,12 @@ const links = [
     { label: "EVENTOS", id: "eventos" },
     { label: "CONTATO", id: "contato" },
 ];
+
+// Ajustes da animação da estrela
+const SPIN_BASE = 30;    // graus por segundo no ritmo normal
+const SPIN_FAST = 720;   // graus por segundo ao clicar
+const SPIN_HOLD = 1000;  // ms em velocidade máxima
+const SPIN_DECEL = 1000; // ms para desacelerar até o ritmo normal
 
 function scrollToSection(id: string) {
     document.getElementById(id)?.scrollIntoView({
@@ -24,6 +30,9 @@ function scrollToSection(id: string) {
 export default function Header() {
     const [isScrolled, setIsScrolled] = useState(false);
     const [open, setOpen] = useState(false);
+
+    const starRef = useRef<HTMLSpanElement>(null);
+    const burstStart = useRef<number | null>(null);
 
     const close = () => setOpen(false);
 
@@ -56,6 +65,50 @@ export default function Header() {
         return () => mq.removeEventListener("change", onChange);
     }, []);
 
+    // Loop de rotação da estrela
+    useEffect(() => {
+        if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+        let angle = 0;
+        let last = performance.now();
+        let frame = 0;
+
+        const tick = (now: number) => {
+            const dt = (now - last) / 1000;
+            last = now;
+
+            let speed = SPIN_BASE;
+            const start = burstStart.current;
+
+            if (start !== null) {
+                const t = now - start;
+                if (t < SPIN_HOLD) {
+                    speed = SPIN_FAST;
+                } else if (t < SPIN_HOLD + SPIN_DECEL) {
+                    const p = (t - SPIN_HOLD) / SPIN_DECEL;
+                    const eased = 1 - Math.pow(1 - p, 3);
+                    speed = SPIN_FAST + (SPIN_BASE - SPIN_FAST) * eased;
+                } else {
+                    burstStart.current = null;
+                }
+            }
+
+            angle = (angle + speed * dt) % 360;
+            if (starRef.current) {
+                starRef.current.style.transform = `rotate(${angle}deg)`;
+            }
+
+            frame = requestAnimationFrame(tick);
+        };
+
+        frame = requestAnimationFrame(tick);
+        return () => cancelAnimationFrame(frame);
+    }, []);
+
+    const spin = () => {
+        burstStart.current = performance.now();
+    };
+
     const scrollTo = (id: string) => (event: MouseEvent<HTMLAnchorElement>) => {
         event.preventDefault();
         scrollToSection(id);
@@ -72,22 +125,31 @@ export default function Header() {
             $isScrolled={isScrolled || open}
             style={{ "--count": links.length } as CSSProperties}
         >
-            <a
+            <S.LogoLink
                 href="#home"
+                aria-label="Página inicial"
                 onClick={(e) => {
                     scrollTo("home")(e);
                     close();
+                    spin();
                 }}
-                aria-label="Página inicial"
             >
+                <S.Mark aria-hidden="true">
+                    <S.MarkStar ref={starRef}>
+                        <Image src="/svg/Cafune.svg" alt="" fill unoptimized />
+                    </S.MarkStar>
+                    <S.MarkBean>
+                        <Image src="/svg/café.svg" alt="" fill unoptimized />
+                    </S.MarkBean>
+                </S.Mark>
+
                 <Image
                     src="/imgs/LogoHeader.png"
                     alt="Logo da cafeteria"
-                    width={150}
-                    height={50}
-                    style={{ marginLeft: "1rem" }}
+                    width={140}
+                    height={47}
                 />
-            </a>
+            </S.LogoLink>
 
             <S.ButtonSection>
                 {links.map(({ label, id }) => (

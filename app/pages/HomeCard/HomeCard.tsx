@@ -38,7 +38,10 @@ export default function HomeCard() {
 
           <S.ButtonContainer>
             <S.ButtonItem variants={fadeUp}>
-              <S.ActionButton type="button">Fazer reserva</S.ActionButton>
+              <S.ActionButton href='https://wa.me/5541996262562?text=Olá!%20Gostaria%20de%20mais%20informações.'
+                target="_blank"
+                rel="noopener noreferrer"
+              >Fazer reserva</S.ActionButton>
             </S.ButtonItem>
             <S.ButtonItem variants={fadeUp}>
               <S.ActionButton type="button" $hideOnMobile>

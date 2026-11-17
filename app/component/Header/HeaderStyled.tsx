@@ -256,3 +256,64 @@ export const MobileIndex = styled.span`
     font-weight: 600;
     opacity: 0.6;
 `;
+
+export const LogoWrapper = styled.div`
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    height: 100%;
+    margin-left: 1rem;
+`;
+
+export const CoffeeMark = styled.button`
+    position: relative;
+    flex-shrink: 0;
+    width: 3.5rem;
+    height: 3.5rem;
+    padding: 0;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+
+    &:active {
+        transform: scale(0.92);
+    }
+`;
+
+export const LogoLink = styled.a`
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    height: 100%;
+    margin-left: 1rem;
+    text-decoration: none;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+
+    &:active {
+        transform: scale(0.97);
+    }
+`;
+
+export const Mark = styled.span`
+    position: relative;
+    flex-shrink: 0;
+    width: 3rem;
+    height: 3rem;
+`;
+
+export const MarkStar = styled.span`
+    position: absolute;
+    inset: 0;
+    will-change: transform;
+`;
+
+export const MarkBean = styled.span`
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 2.5rem;
+    height: 2.5rem;
+    transform: translate(-50%, -50%);
+`;
