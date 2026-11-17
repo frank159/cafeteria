@@ -5,7 +5,7 @@ const EASE_OUT = "cubic-bezier(0.22, 1, 0.36, 1)";
 const EASE_IN_OUT = "cubic-bezier(0.76, 0, 0.24, 1)";
 const MENU_BG = "#3d1c14"; // versão opaca do fundo do header
 
-const EXIT_WAIT = "calc((var(--count) - 1) * 35ms + 260ms)";
+const EXIT_WAIT = "calc((var(--count) - 1) * 1ms + 140ms)";
 
 export const HeaderStyled = styled.header<{ $isScrolled: boolean }>`
     position: fixed;
