@@ -1,14 +1,6 @@
 import { motion } from "framer-motion";
 import { styled } from "styled-components";
 
-/*
-  Desktop (> 1200px): layout calculado em cima do print (frame 1920 x 904), tudo em %
-  do frame. Título e texto escalam junto com o frame (cqw), senão quebram linha
-  e passam por cima da outra seção.
-  Até 1200px: coluna única; cada seção vira um grid pequeno (texto em cima,
-  botão + imagem embaixo), como na referência mobile.
-*/
-
 export const PresentationPageContainer = styled.section`
   width: 100%;
   background-color: #3d1c14;
@@ -28,7 +20,6 @@ export const Stage = styled.div`
   aspect-ratio: 1920 / 904;
   overflow: hidden;
 
-  /* permite usar cqw (largura do frame) nos textos */
   @media (min-width: 1201px) {
     container-type: inline-size;
   }
@@ -44,7 +35,6 @@ export const Stage = styled.div`
   }
 `;
 
-/* Estrela no canto superior direito, cortada pela borda de cima */
 export const Star = styled(motion.img)`
   position: absolute;
   left: 86.9%;
@@ -60,30 +50,26 @@ export const Star = styled(motion.img)`
   }
 `;
 
-/* Botão: no desktop mantém o espaço que o pb-4 dava; no mobile o grupo posiciona */
 export const ButtonSlot = styled(motion.div) <{ $spaced?: boolean }>`
   display: flex;
   margin-top: ${(p) => (p.$spaced ? "16px" : "0")};
 
   @media (max-width: 1200px) {
     margin-top: 0;
-    z-index: 5; /* fica por cima da imagem */
+    z-index: 5; 
 
-    /* botão mais compacto, como na referência */
     && > * {
       padding: 10px;
     }
   }
 `;
 
-/* Título + texto */
 export const Copy = styled(motion.div)`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: 9px;
 
-  /* 64px / 16px no frame de 1920, escalando até 32px / 14px */
   @media (min-width: 1201px) {
     h2 {
       font-size: clamp(32px, 3.333cqw, 64px);
@@ -100,7 +86,6 @@ export const Copy = styled(motion.div)`
   }
 `;
 
-/* Bloco de texto (título + texto + botão) */
 export const TextBlock = styled.div<{ $left: string; $top: string; $width: string }>`
   position: absolute;
   left: ${(p) => p.$left};
@@ -112,19 +97,15 @@ export const TextBlock = styled.div<{ $left: string; $top: string; $width: strin
   gap: 9px;
   z-index: 4;
 
-  /* no mobile os filhos (Copy e ButtonSlot) viram itens do grid do grupo */
   @media (max-width: 1200px) {
     display: contents;
   }
 `;
 
-/* Seção 1: texto em cima; imagem embaixo com o botão sobreposto à esquerda */
-/* Seção 1: Ajustado para não usar display: contents que quebra o absolute */
 export const CakesGroup = styled.div`
   position: absolute;
   inset: 0;
-  pointer-events: none; /* Deixa cliques passarem se necessário, ou remova se houver interatividade */
-
+  pointer-events: none; 
   @media (max-width: 1200px) {
     position: static;
     display: grid;
@@ -143,7 +124,6 @@ export const CakesGroup = styled.div`
   }
 `;
 
-/* Seção 2: Ajustado da mesma forma */
 export const CoffeeGroup = styled.div`
   position: absolute;
   inset: 0;
@@ -169,7 +149,6 @@ export const CoffeeGroup = styled.div`
   }
 `;
 
-/* img1: x100 y53 535x638 – fica por cima da img2 */
 export const ImgCakes = styled(motion.img)`
 position: absolute;
   left: 5.208%;
@@ -180,7 +159,6 @@ position: absolute;
   object-position: right;
   z-index: 3;
 
-  /* mobile: foto espelhada, alinhada à direita; o botão cobre ~23px da borda esquerda */
   @media (max-width: 1200px) {
     position: static;
     grid-area: media;
@@ -193,7 +171,6 @@ position: absolute;
   }
 `;
 
-/* img2: x480 y355 591x395 – parte da esquerda fica atrás da img1 */
 export const ImgCoffee = styled(motion.img)`
   position: absolute;
   left: 25%;
@@ -204,7 +181,6 @@ export const ImgCoffee = styled(motion.img)`
   object-position: center;
   z-index: 2;
 
-  /* mobile: foto espelhada, copo inteiro dentro do recorte */
   @media (max-width: 1200px) {
     position: static;
     grid-area: media;
@@ -244,7 +220,6 @@ export const OutlineButton = styled.a`
   }
 `;
 
-/* Anel de café: x1215 y535 ~182px */
 export const CoffeeRing = styled(motion.img)`
   position: absolute;
   left: 62.28%;

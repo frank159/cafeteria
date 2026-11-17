@@ -7,7 +7,7 @@ export const HomeCardContainer = styled.section`
   flex-direction: column;
   width: 100%;
   min-height: 100vh;
-  min-height: 100svh; /* evita o "pulo" da barra do navegador no mobile */
+  min-height: 100svh; 
   box-sizing: border-box;
   overflow: hidden;
 
@@ -46,7 +46,6 @@ export const HomeCardContent = styled(motion.div)`
 
 `;
 
-/* font-size igual ao do Title (64px / 36px) para o anel escalar em "em" */
 export const HomeCardTitleWrapper = styled.div`
   position: relative;
   font-size: 64px;
@@ -76,7 +75,6 @@ export const CoffeeRing = styled(motion.img)`
 export const TitleLine = styled.span`
   display: block;
   overflow: hidden;
-  /* folga embaixo para não cortar o "q" de "quente" */
   padding-bottom: 0.12em;
   margin-bottom: -0.12em;
 `;
@@ -85,10 +83,8 @@ export const TitleLineInner = styled(motion.span)`
   display: block;
 `;
 
-/* NOVO: wrapper de cada botão (o ActionButton mantém o hover em CSS) */
 export const ButtonItem = styled(motion.div)``;
 
-/* Wrapper do Text: controla só espaçamento e largura */
 export const HomeCardDescription = styled(motion.div)`
   margin: 0 0 2.4rem;
   max-width: 340px;
@@ -98,7 +94,6 @@ export const HomeCardDescription = styled(motion.div)`
     margin-bottom: 1rem;
   }
 
-  /* coluna estreita para a xícara aparecer ao lado do texto */
   @media (max-width: 768px) {
     max-width: 11.5rem;
   }
@@ -163,7 +158,6 @@ export const HomeCardTagline = styled(motion.span)`
     width: 8rem;
   }
 
-  /* mobile: entra no fluxo, embaixo à esquerda (como na referência) */
   @media (max-width: 768px) {
     position: static;
     align-self: flex-start;

@@ -96,7 +96,6 @@ export default function PresentationPageB() {
                 loading="lazy"
               />
 
-              {/* desktop: img3 · mobile: img2Mobile */}
               <S.Picture>
                 <source media="(max-width: 1200px)" srcSet={`${IMG}/img2Mobile.png`} />
                 <S.ImgCakes
@@ -144,7 +143,6 @@ export default function PresentationPageB() {
               aria-hidden="true"
             />
 
-            {/* o pai dispara o observer; ícone e texto entram em sequência */}
             <S.Tagline variants={taglineStagger} {...inViewIn("contact", DELAY.base)}>
               <S.TaglineIcon
                 variants={floatIn}
@@ -181,7 +179,6 @@ export default function PresentationPageB() {
           </S.Stage>
         </S.Section>
 
-        {/* No fim da página: offset "0%", senão nunca sai da faixa ignorada */}
         <S.Footer variants={fadeIn} {...inView(DELAY.base, "0%")}>
           © {year} Cafeteria. Todos os direitos reservados.
         </S.Footer>
