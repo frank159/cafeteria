@@ -125,7 +125,8 @@ export default function PresentationPageB() {
                     sob medida para o seu evento.
                   </Text>
                 </S.Copy>
-                <S.ButtonSlot variants={fadeUp} {...inViewIn("eventB", DELAY.button)} $gap="1.4cqw">
+                <S.ButtonSlot variants={fadeUp} {...inViewIn("eventB", DELAY.button)} style={{ gap: "1.4cqw" }}
+                >
                   <Button
                     href='https://wa.me/5541996262562?text=Olá!%20Gostaria%20de%20mais%20informações.'
                     target="_blank"
