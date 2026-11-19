@@ -1,6 +1,17 @@
 import { motion } from "framer-motion";
 import { styled, css } from "styled-components";
 
+const BANNER_W = 1920;
+const BANNER_H = 1080;
+
+const REF = { vw: 1902, vh: 907, x: 640, y: 645 };
+
+const ratio = BANNER_W / BANNER_H;
+const refW = Math.max(REF.vw, REF.vh * ratio);
+const refH = Math.max(REF.vh, REF.vw / ratio);
+const TAG_X = REF.x / refW;
+const TAG_Y = (REF.y - (REF.vh - refH) / 2) / refH;
+
 export const CoffeeRing = styled(motion.img)`
   position: absolute;
   left: 4em;
@@ -72,8 +83,14 @@ export const ActionButton = styled.a<{ $hideOnMobile?: boolean }>`
 
 export const HomeCardTagline = styled(motion.span)`
   position: absolute;
-  top: 29%;
-  left: 79.5%;
+  /* tamanho que a imagem de fundo ocupa na tela (mesma conta do "cover") */
+  --img-w: max(100cqw, calc(100svh * ${ratio.toFixed(5)}));
+  --img-h: max(100svh, calc(100cqw / ${ratio.toFixed(5)}));
+
+  /* ancorada na imagem: left-center, igual ao background-position */
+  left: calc(var(--img-w) * ${TAG_X.toFixed(5)});
+  top: calc(50% + var(--img-h) * ${(TAG_Y - 0.5).toFixed(5)});
+
   width: 11rem;
   z-index: 2;
   font-family: var(--font-caveat), cursive;
@@ -81,12 +98,10 @@ export const HomeCardTagline = styled(motion.span)`
   line-height: 1.25;
   color: #A4B9CE;
   rotate: -5deg;
+  pointer-events: none;
 
-  @media (max-width: 1024px) {
-    left: auto;
-    right: 1.5rem;
-    top: 14%;
-    width: 8rem;
+  @media (max-width: 1500px) {
+    left: calc(var(--img-w) * 0.33649 + 3rem);
   }
 
   @media (max-width: 768px) {
@@ -100,6 +115,7 @@ export const HomeCardTagline = styled(motion.span)`
 
 export const HomeCardContainer = styled.section`
   position: relative;
+  container-type: inline-size;
   display: flex;
   flex-direction: column;
   width: 100%;
