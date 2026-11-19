@@ -1,7 +1,7 @@
 import type { Variants } from "framer-motion";
 import { css, keyframes } from "styled-components";
 
-/* 
+/*
 ═════════════════════════════════════════════════════════════
 CONFIGURAÇÃO CENTRAL
 ═════════════════════════════════════════════════════════════
@@ -47,10 +47,10 @@ export const MOTION_CONFIG = { reducedMotion: "user" } as const;
 
 export const HOVER_TRANSITION = "0.2s ease";
 
-/* 
+/*
 ═════════════════════════════════════════════════════════════
   HELPERS
-═════════════════════════════════════════════════════════════ 
+═════════════════════════════════════════════════════════════
 */
 
 const withDelay = (delay?: number) => (delay ? { delay } : {});
@@ -79,12 +79,13 @@ export const SECTION = {
   cakes: { offset: "-50%", delayScale: 1 },
   coffee: { offset: "-5%", delayScale: 0.6 },
   room: { offset: "-50%", delayScale: 1 },
+  roomB: { offset: "-30%", delayScale: 1 },
   event: { offset: "-50%", delayScale: 1 },
   eventB: { offset: "-1%", delayScale: 1 },
   contact: { offset: VIEW_OFFSET, delayScale: 1 },
 } as const;
 
-export const inViewIn = (section: keyof typeof SECTION, delay = 0, offset?: string,) => 
+export const inViewIn = (section: keyof typeof SECTION, delay = 0, offset?: string,) =>
   inView(delay * SECTION[section].delayScale, offset ?? SECTION[section].offset);
 
 export const onLoad = (delay = 0) =>
@@ -97,7 +98,7 @@ export const onLoad = (delay = 0) =>
 /*
 ═════════════════════════════════════════════════════════════
    VARIANTS
-═════════════════════════════════════════════════════════════ 
+═════════════════════════════════════════════════════════════
 */
 
 export const fadeUp: Variants = {
@@ -176,10 +177,10 @@ export const clipDown = clipReveal("inset(0% 0% 99.5% 0%)", DURATION.clip);
 export const clipUp = clipReveal("inset(99.5% 0% 0% 0%)", DURATION.clip);
 export const clipLeft = clipReveal("inset(0% 0% 0% 99.5%)", DURATION.slow);
 
-/* 
+/*
 ═════════════════════════════════════════════════════════════
 ANIMAÇÕES EM CSS (styled-components)
-═════════════════════════════════════════════════════════════ 
+═════════════════════════════════════════════════════════════
 */
 
 const floatKeyframes = keyframes`

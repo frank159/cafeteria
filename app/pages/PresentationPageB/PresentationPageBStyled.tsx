@@ -110,8 +110,9 @@ export const TextBlock = styled.div<{ $left: string; $top: string; $width: strin
   align-items: flex-start;
   gap: 9px;
   z-index: 4;
+  pointer-events: auto; /* <- adicione isso */
 
-  ${mobile} {
+  @media (max-width: 1200px) {
     display: contents;
   }
 `;
@@ -172,14 +173,18 @@ export const HideOnMobile = styled.div`
   }
 `;
 
-export const ButtonSlot = styled(motion.div) <{ $gap?: string }>`
+export const ButtonSlot = styled(motion.div) <{ $spaced?: boolean }>`
   display: flex;
-  margin-top: ${(p) => p.$gap ?? "0"};
+  margin-top: ${(p) => (p.$spaced ? "16px" : "0")};
 
-  ${mobile} {
-    margin-top: 0.5rem;
+  @media (max-width: 1200px) {
     position: relative;
-    z-index: 5;
+    z-index: 5; /* acima das imagens (z-index 2 e 3) */
+    margin-top: 0;
+
+    && > * {
+      padding: 10px;
+    }
   }
 `;
 

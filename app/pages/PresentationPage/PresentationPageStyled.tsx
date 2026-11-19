@@ -55,8 +55,9 @@ export const ButtonSlot = styled(motion.div) <{ $spaced?: boolean }>`
   margin-top: ${(p) => (p.$spaced ? "16px" : "0")};
 
   @media (max-width: 1200px) {
+    position: relative;
+    z-index: 5; /* acima das imagens (z-index 2 e 3) */
     margin-top: 0;
-    z-index: 5; 
 
     && > * {
       padding: 10px;
@@ -96,6 +97,7 @@ export const TextBlock = styled.div<{ $left: string; $top: string; $width: strin
   align-items: flex-start;
   gap: 9px;
   z-index: 4;
+  pointer-events: auto; /* <- adicione isso */
 
   @media (max-width: 1200px) {
     display: contents;
@@ -105,7 +107,7 @@ export const TextBlock = styled.div<{ $left: string; $top: string; $width: strin
 export const CakesGroup = styled.div`
   position: absolute;
   inset: 0;
-  pointer-events: none; 
+  pointer-events: none;
   @media (max-width: 1200px) {
     position: static;
     display: grid;

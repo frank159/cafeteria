@@ -53,7 +53,7 @@ export default function PresentationPageB() {
             />
             <S.StainA
               variants={ringIn}
-              {...inViewIn("room", DELAY.image)}
+              {...inViewIn("roomB", DELAY.image)}
               src="/NewImgs/VetorMarcaCaf%C3%A9B.png"
               alt=""
               aria-hidden="true"
@@ -73,11 +73,12 @@ export default function PresentationPageB() {
                 </Text>
               </S.Copy>
 
-              <S.ButtonRow variants={fadeUp} {...inViewIn("room", DELAY.button)}>
-                <Button text="Entrar em contato" />
-                <S.HideOnMobile>
-                  <Button text="Fazer reserva" />
-                </S.HideOnMobile>
+              <S.ButtonRow variants={fadeUp} {...inViewIn("roomB", DELAY.base)}>
+                <Button
+                  href='https://wa.me/5541996262562?text=Olá!%20Gostaria%20de%20mais%20informações.'
+                  target="_blank"
+                  text="Fazer reserva"
+                />
               </S.ButtonRow>
             </S.TextBlock>
           </S.Stage>
@@ -115,7 +116,7 @@ export default function PresentationPageB() {
               />
 
               <S.TextBlock $left="48.96%" $top="16%" $width="37.5%">
-                <S.Copy variants={fadeUp} {...inViewIn("event", DELAY.copy)} $text="1.15cqw" $end>
+                <S.Copy variants={fadeUp} {...inViewIn("eventB", DELAY.copy)} $text="1.15cqw" $end>
                   <Title as="h2">Para seu evento</Title>
                   <Text>
                     Leve a experiência da nossa confeitaria para a sua comemoração.
@@ -124,8 +125,12 @@ export default function PresentationPageB() {
                     sob medida para o seu evento.
                   </Text>
                 </S.Copy>
-                <S.ButtonSlot variants={fadeUp} {...inViewIn("event", DELAY.button)} $gap="1.4cqw">
-                  <Button text="Entrar em contato" />
+                <S.ButtonSlot variants={fadeUp} {...inViewIn("eventB", DELAY.button)} $gap="1.4cqw">
+                  <Button
+                    href='https://wa.me/5541996262562?text=Olá!%20Gostaria%20de%20mais%20informações.'
+                    target="_blank"
+                    text="Entrar em contato"
+                  />
                 </S.ButtonSlot>
               </S.TextBlock>
             </S.EventGroup>
@@ -172,9 +177,6 @@ export default function PresentationPageB() {
                   Rua dos Cafezais, 100 — Bairro Alto, SP
                 </S.Address>
               </S.Copy>
-              <S.ButtonSlot variants={fadeUp} {...inViewIn("contact", DELAY.button)} $gap="1.6cqw">
-                <Button text="Entrar em contato" />
-              </S.ButtonSlot>
             </S.TextBlock>
           </S.Stage>
         </S.Section>

@@ -10,7 +10,7 @@ export const ButtonStyled = styled.button`
     width: fit-content;
     color: #A4B9CE;
     font-family: var(--font-bona-nova-sc), serif;
-    z-index: 999;
+
     animation: button-appear 0.4s ease-out both;
     transition: transform 0.2s ease, background-color 0.4s ease;
 

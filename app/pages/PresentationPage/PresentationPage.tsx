@@ -6,8 +6,12 @@ import Title from "@/app/component/Title/Title";
 import Text from "@/app/component/Text/Text";
 import Button from "@/app/component/Button/Button";
 import { clipDown, clipUp, DELAY, fadeUp, inViewIn, popStar, ringIn } from "@/app/pages/animations";
+import ProjectModal from "@/app/component/ProjectCard/ProjectModal";
+import { useState } from "react";
 
 export default function PresentationPage() {
+  const [menuOpen, setMenuOpen] = useState(false);
+
   return (
     <MotionConfig reducedMotion="user">
       <S.PresentationPageContainer id="bolos-e-cafes">
@@ -35,7 +39,7 @@ export default function PresentationPage() {
                 </Text>
               </S.Copy>
               <S.ButtonSlot variants={fadeUp} {...inViewIn("cakes", DELAY.button)}>
-                <Button text="Ver cardápio" />
+                <Button onClick={() => setMenuOpen(true)} text="Ver cardápio" />
               </S.ButtonSlot>
             </S.TextBlock>
           </S.CakesGroup>
@@ -65,12 +69,22 @@ export default function PresentationPage() {
                 </Text>
               </S.Copy>
               <S.ButtonSlot $spaced variants={fadeUp} {...inViewIn("coffee", DELAY.button)}>
-                <Button text="Fazer reserva" />
+                <Button
+                  href='https://wa.me/5541996262562?text=Olá!%20Gostaria%20de%20mais%20informações.'
+                  target="_blank"
+                  text="Fazer reserva" />
               </S.ButtonSlot>
             </S.TextBlock>
           </S.CoffeeGroup>
         </S.Stage>
       </S.PresentationPageContainer>
+      <ProjectModal
+        open={menuOpen}
+        name="Carta de drinks"
+        images={["/imgs/cardapio/cardapio.jpg"]}
+        fitToViewport
+        onClose={() => setMenuOpen(false)}
+      />
     </MotionConfig>
   );
 }
