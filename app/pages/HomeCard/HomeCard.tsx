@@ -36,7 +36,7 @@ export default function HomeCard() {
           <S.HomeCardDescription variants={fadeUp}>
             <Text>
               Cafés especiais extraídos na hora, receitas artesanais com ingredientes
-              selecionados e bolos exclusivos para acompanhar sua tarde ou o seu evento.
+              selecionados e bolos exclusivos para acompanhar sua tarde <br/>ou o seu evento.
             </Text>
           </S.HomeCardDescription>
 
@@ -49,7 +49,11 @@ export default function HomeCard() {
               >Fazer reserva</S.ActionButton>
             </S.ButtonItem>
             <S.ButtonItem variants={fadeUp}>
-              <S.ActionButton onClick={() => setMenuOpen(true)} type="button">
+              <S.ActionButton
+                className="home-card-menu-button"
+                onClick={() => setMenuOpen(true)}
+                type="button"
+              >
                 Ver cardápio
               </S.ActionButton>
             </S.ButtonItem>
@@ -67,6 +71,13 @@ export default function HomeCard() {
         fitToViewport
         onClose={() => setMenuOpen(false)}
       />
+      <style jsx global>{`
+        @media (max-width: 767px) {
+          .home-card-menu-button {
+            display: none;
+          }
+        }
+      `}</style>
     </MotionConfig>
   );
 }
