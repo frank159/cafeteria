@@ -1,61 +1,6 @@
 import { motion } from "framer-motion";
 import { styled, css } from "styled-components";
 
-export const HomeCardContainer = styled.section`
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  min-height: 100vh;
-  min-height: 100svh;
-  box-sizing: border-box;
-  overflow: hidden;
-
-  background-color: #050608;
-  background-image: url("/NewImgs/BannerHeroSection.png");
-  background-size: cover;
-  background-position: left center;
-  background-repeat: no-repeat;
-
-  @media (max-width: 768px) {
-      background-image: url("/NewImgs/BannerHeroSectionMobile.png");
-
-  }
-`;
-
-export const HomeCardContent = styled(motion.div)`
-  position: relative;
-  z-index: 2;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  text-align: left;
-  width: 100%;
-  max-width: 640px;
-  box-sizing: border-box;
-  padding: 17.5rem 1rem 0rem 6rem;
-
-  @media (max-width: 1024px) {
-    padding: 12rem 1rem 0 3rem;
-  }
-
-  @media (max-width: 768px) {
-    max-width: 100%;
-    padding: 7rem 1rem 2rem;
-  }
-
-`;
-
-export const HomeCardTitleWrapper = styled.div`
-  position: relative;
-  font-size: 64px;
-  margin-bottom: 1.2rem;
-
-  @media (max-width: 768px) {
-    font-size: 36px;
-  }
-`;
-
 export const CoffeeRing = styled(motion.img)`
   position: absolute;
   left: 4em;
@@ -84,20 +29,6 @@ export const TitleLineInner = styled(motion.span)`
 `;
 
 export const ButtonItem = styled(motion.div)``;
-
-export const HomeCardDescription = styled(motion.div)`
-  margin: 0 0 2.4rem;
-  max-width: 340px;
-
-  @media (max-width: 768px) {
-    max-width: 18rem;
-    margin-bottom: 1rem;
-  }
-
-  @media (max-width: 768px) {
-    max-width: 11.5rem;
-  }
-`;
 
 export const ButtonContainer = styled.div`
   display: flex;
@@ -164,5 +95,73 @@ export const HomeCardTagline = styled(motion.span)`
     margin: auto 0 18vh 2.2rem;
     width: 10rem;
     font-size: 24px;
+  }
+`;
+
+export const HomeCardContainer = styled.section`
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: 100vh;
+  min-height: 100svh;
+  height: auto;
+  box-sizing: border-box;
+  /* corta só o excesso lateral (animações), nunca o conteúdo na vertical */
+  overflow-x: clip;
+  overflow-y: visible;
+
+  background-color: #050608;
+  background-image: url("/NewImgs/BannerHeroSection.png");
+  background-size: cover;
+  background-position: left center;
+  background-repeat: no-repeat;
+
+  @media (max-width: 768px) {
+    background-image: url("/NewImgs/BannerHeroSectionMobile.png");
+  }
+`;
+
+export const HomeCardContent = styled(motion.div)`
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  width: 100%;
+  max-width: 640px;
+  box-sizing: border-box;
+  /* topo proporcional à altura da tela + respiro embaixo */
+  padding: clamp(8rem, 26vh, 17.5rem) 1rem 3rem 6rem;
+
+  @media (max-width: 1024px) {
+    padding: clamp(7rem, 20vh, 12rem) 1rem 3rem 3rem;
+  }
+
+  @media (max-width: 768px) {
+    max-width: 100%;
+    padding: 7rem 1rem 2rem;
+  }
+`;
+
+export const HomeCardTitleWrapper = styled.div`
+  position: relative;
+  /* 64px no desktop, reduz suavemente em telas menores */
+  font-size: clamp(36px, 5.4vw, 64px);
+  margin-bottom: 1.2rem;
+
+  @media (max-width: 768px) {
+    font-size: 36px;
+  }
+`;
+
+export const HomeCardDescription = styled(motion.div)`
+  margin: 0 0 2.4rem;
+  max-width: 340px;
+
+  @media (max-width: 768px) {
+    max-width: 11.5rem;
+    margin-bottom: 1rem;
   }
 `;
