@@ -133,7 +133,7 @@ export const HomeCardContent = styled(motion.div)`
   max-width: 640px;
   box-sizing: border-box;
   /* topo proporcional à altura da tela + respiro embaixo */
-  padding: clamp(8rem, 26vh, 17.5rem) 1rem 3rem 6rem;
+  padding: clamp(8rem, 26vh, 17.5rem) 1rem 3rem 4rem;
 
   @media (max-width: 1024px) {
     padding: clamp(7rem, 20vh, 12rem) 1rem 3rem 3rem;
